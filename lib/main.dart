@@ -23,6 +23,12 @@ class MainApp extends StatelessWidget {
         textTheme: const TextTheme(
           bodyMedium: TextStyle(color: Colors.black87),
         ),
+        cardTheme: CardTheme(
+          elevation: 0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          margin: const EdgeInsets.all(10),
+          shadowColor: Colors.black.withOpacity(0.1), // light mode
+        ),
       ),
       darkTheme: ThemeData( // 🌙 Tema gelap
         brightness: Brightness.dark,
@@ -34,6 +40,12 @@ class MainApp extends StatelessWidget {
         ),
         textTheme: const TextTheme(
           bodyMedium: TextStyle(color: Colors.white70),
+        ),
+        cardTheme: CardTheme(
+          elevation: 0,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          margin: const EdgeInsets.all(10),
+          shadowColor: Colors.grey.withOpacity(0.3), // dark mode
         ),
       ),
       themeMode: ThemeMode.system, // 🌗 Otomatis ngikut sistem

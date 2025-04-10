@@ -38,8 +38,10 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           "Berita Terbaru",
@@ -57,6 +59,7 @@ class _NewsPageState extends State<NewsPage> {
                   itemCount: listArticle.length,
                   itemBuilder: (context, index) {
                     final article = listArticle[index];
+
                     return GestureDetector(
                       onTap: () {
                         Navigator.push(
@@ -66,13 +69,19 @@ class _NewsPageState extends State<NewsPage> {
                           ),
                         );
                       },
-                      child: Card(
-                        color: Theme.of(context).cardColor,
-                        margin: const EdgeInsets.all(10),
-                        shape: RoundedRectangleBorder(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: theme.cardColor,
                           borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: theme.cardTheme.shadowColor ?? Colors.black.withOpacity(0.1),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
                         ),
-                        elevation: 5,
+                        margin: theme.cardTheme.margin ?? const EdgeInsets.all(10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -94,10 +103,10 @@ class _NewsPageState extends State<NewsPage> {
                               padding: const EdgeInsets.all(15.0),
                               child: Text(
                                 article.title,
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                             Padding(
@@ -113,10 +122,10 @@ class _NewsPageState extends State<NewsPage> {
                                         Expanded(
                                           child: Text(
                                             article.author ?? 'Unknown',
-                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
+                                            style: theme.textTheme.bodyMedium?.copyWith(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
@@ -125,10 +134,10 @@ class _NewsPageState extends State<NewsPage> {
                                   ),
                                   Text(
                                     article.publishedAt.toString(),
-                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                          fontSize: 13,
-                                          color: Colors.grey,
-                                        ),
+                                    style: theme.textTheme.bodyMedium?.copyWith(
+                                      fontSize: 13,
+                                      color: Colors.grey,
+                                    ),
                                   ),
                                 ],
                               ),
