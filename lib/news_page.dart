@@ -39,21 +39,17 @@ class _NewsPageState extends State<NewsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 227, 227, 227),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           "Berita Terbaru",
-          style: TextStyle(
-            color: Colors.white
-          ),
-          ),
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.red,
         centerTitle: true,
       ),
       body: isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
+          ? const Center(child: CircularProgressIndicator())
           : listArticle.isEmpty
               ? const Center(child: Text("Tidak ada data"))
               : ListView.builder(
@@ -70,14 +66,12 @@ class _NewsPageState extends State<NewsPage> {
                           ),
                         );
                       },
-
-                        // aku pengen nambahin sized box disiniyang tinginya cuma 10 aja
-
                       child: Card(
-                        color: Colors.white,
+                        color: Theme.of(context).cardColor,
                         margin: const EdgeInsets.all(10),
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         elevation: 5,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,8 +82,7 @@ class _NewsPageState extends State<NewsPage> {
                                 topRight: Radius.circular(20),
                               ),
                               child: Image.network(
-                                article.urlToImage ??
-                                    'https://via.placeholder.com/150',
+                                article.urlToImage ?? 'https://via.placeholder.com/150',
                                 width: double.infinity,
                                 height: 200,
                                 fit: BoxFit.cover,
@@ -101,32 +94,29 @@ class _NewsPageState extends State<NewsPage> {
                               padding: const EdgeInsets.all(15.0),
                               child: Text(
                                 article.title,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 0),
+                              padding: const EdgeInsets.symmetric(horizontal: 15.0),
                               child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: Row(
                                       children: [
-                                        const Icon(Icons.people_alt_outlined,
-                                            size: 18),
+                                        const Icon(Icons.people_alt_outlined, size: 18),
                                         const SizedBox(width: 5),
                                         Expanded(
                                           child: Text(
                                             article.author ?? 'Unknown',
-                                            style: const TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
                                             overflow: TextOverflow.ellipsis,
                                           ),
                                         ),
@@ -135,10 +125,10 @@ class _NewsPageState extends State<NewsPage> {
                                   ),
                                   Text(
                                     article.publishedAt.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: Colors.grey,
-                                    ),
+                                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                          fontSize: 13,
+                                          color: Colors.grey,
+                                        ),
                                   ),
                                 ],
                               ),
