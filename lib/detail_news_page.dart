@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+// import 'package:url_launcher/url_launcher.dart';
 import 'package:news_app/response_articles.dart';
 
 class DetailNewsPage extends StatelessWidget {
@@ -7,19 +7,14 @@ class DetailNewsPage extends StatelessWidget {
 
   const DetailNewsPage({super.key, required this.article});
 
-  Future<void> _launchURL(String url) async {
-    try {
-      final uri = Uri.parse(url);
-      if (await canLaunchUrl(uri)) {
-        await launchUrl(uri, mode: LaunchMode.externalApplication);
-      } else {
-        debugPrint('Could not launch $url');
-      }
-    } catch (e) {
-      debugPrint('Error launching URL: $e');
-    }
-  }
-
+  // Future<void> _launchURL(String url) async {
+  //   final Uri uri = Uri.parse(url);
+  //   if (await canLaunchUrl(uri)) {
+  //     await launchUrl(uri, mode: LaunchMode.externalApplication);
+  //   } else {
+  //     throw 'Could not launch $url';
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +95,7 @@ class DetailNewsPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 15.0),
                   child: Row(
                     children: [
-                      const Icon(Icons.access_time_outlined, size: 13, color: Colors.grey,),
+                      const Icon(Icons.access_time_outlined, size: 13, color: Colors.grey),
                       const SizedBox(width: 5),
                       Expanded(
                         child: Text(
@@ -137,12 +132,10 @@ class DetailNewsPage extends StatelessWidget {
                 //       Expanded(
                 //         child: GestureDetector(
                 //           onTap: () {
-                //             print("URL: ${article.url}");
                 //             if (article.url != null) {
                 //               _launchURL(article.url!);
                 //             }
                 //           },
-
                 //           child: Text(
                 //             article.url ?? 'No URL available',
                 //             style: theme.textTheme.bodyMedium?.copyWith(
