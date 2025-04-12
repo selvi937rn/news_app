@@ -36,6 +36,15 @@ class _NewsPageState extends State<NewsPage> {
     getListArticle();
   }
 
+  String formatDate(String? dateStr) {
+    try {
+      final date = DateTime.parse(dateStr ?? '');
+      return "${date.day}-${date.month}-${date.year} ${date.hour}:${date.minute.toString().padLeft(2, '0')}";
+    } catch (_) {
+      return 'Unknown Date';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -44,7 +53,7 @@ class _NewsPageState extends State<NewsPage> {
       backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
-          "Berita Terbaru",
+          "The News",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.red,
@@ -114,30 +123,35 @@ class _NewsPageState extends State<NewsPage> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Expanded(
-                                    child: Row(
-                                      children: [
-                                        const Icon(Icons.people_alt_outlined, size: 18),
-                                        const SizedBox(width: 5),
-                                        Expanded(
-                                          child: Text(
-                                            article.author ?? 'Unknown',
-                                            style: theme.textTheme.bodyMedium?.copyWith(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            overflow: TextOverflow.ellipsis,
+                                  Row(
+                                    children: [
+                                      const Icon(Icons.people_alt_outlined, size: 18),
+                                      const SizedBox(width: 5),
+                                      ConstrainedBox(
+                                        constraints: const BoxConstraints(maxWidth: 120), // batasi lebar author
+                                        child: Text(
+                                          article.author ?? 'Unknown',
+                                          style: theme.textTheme.bodyMedium?.copyWith(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
                                           ),
+                                          overflow: TextOverflow.ellipsis,
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                  Text(
-                                    article.publishedAt.toString(),
-                                    style: theme.textTheme.bodyMedium?.copyWith(
-                                      fontSize: 13,
-                                      color: Colors.grey,
-                                    ),
+                                  Row(
+                                    children: [
+                                      const Icon(Icons.access_time_outlined, size: 13, color: Colors.grey),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        article.publishedAt.toString(),
+                                        style: theme.textTheme.bodyMedium?.copyWith(
+                                          fontSize: 13,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),

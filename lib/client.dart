@@ -6,7 +6,7 @@ import 'package:news_app/response_articles.dart';
 class Client {
   static Future<List<Article>> fetchArticle() async {
     const url =
-      "https://newsapi.org/v2/everything?q=Indonesia&sources?country=id&apiKey=0693d729a5ae44a5bab8245a27c27589";
+      "https://newsapi.org/v2/everything?q=Indonesia&sources?country=id&apiKey=64d3bd54f9654d0b84eddb95cedfc6cc";
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {

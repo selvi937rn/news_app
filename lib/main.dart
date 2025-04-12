@@ -45,7 +45,7 @@ class MainApp extends StatelessWidget {
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           margin: const EdgeInsets.all(10),
-          shadowColor: Colors.grey.withOpacity(0.3), // dark mode
+          shadowColor: Colors.black.withOpacity(0.3), // dark mode
         ),
       ),
       themeMode: ThemeMode.system, // 🌗 Otomatis ngikut sistem

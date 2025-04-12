@@ -57,14 +57,14 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) => Article(
     source: Source.fromJson(json['source']),
-    author: json['author'] ?? 'Tidak ada author',
-    title: json['title']?? 'Tidak ada title',
-    description: json['description'] ?? 'Tidak ada description',
-    url: json['url'] ?? 'Tidak ada url',
+    author: json['author'] ?? 'Unknown',
+    title: json['title']?? 'No title',
+    description: json['description'] ?? 'no description',
+    url: json['url'] ?? 'no url',
     urlToImage: json['urlToImage'] ?? 'https://cdn.vectorstock.com/i/preview-1x/65/30/default-image-icon-missing-picture-page-vector-40546530.jpg',
     publishedAt: 
       DateTime.parse(json['publishedAt'] ?? '2023-11-20T02:19:48Z'),
-    content: json['content'] ?? 'Tidak ada content',
+    content: json['content'] ?? 'no content',
   );
 
   Map<String, dynamic> toJson() => {
